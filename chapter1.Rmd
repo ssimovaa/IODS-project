@@ -1,4 +1,3 @@
-
 # About the project
 
 *Write a short description about the course and add a link to your GitHub repository here. This is an R Markdown (.Rmd) file so you should use R Markdown syntax.*
@@ -9,5 +8,19 @@
 date()
 
 ```
-The text continues here.
 
+My name is Susanna. I'm a doctoral student in the Faculty of Agriculture and Forestry, UH. I work with plants in the field, molecules in the lab, and data on the computer.
+
+I love digging into data, and would love to *excel* at it. For years, I've wanted to properly learn R but didn't ~~find~~ take the time to do it. Similarly, I've been curious about GitHub, just maybe not quite curious enough to actually try it out. When I got an email from YEB doctoral school about this course, I saw the perfect opportunity to get introduced with R and Git, yet keeping the focus on application -- statistics -- rather than coding.
+
+Right now I'm of two minds about IODS.  There's a lot going on in my research project at the moment, so this course may be just a little too demanding for me.
+
+> "It always seems impossible until it’s done."  
+  *<span style="font-size: 10px;"> -- Nelson Mandela</span>*
+
+My GitHub repository is https://github.com/ssimovaa/IODS-project
+
+***
+**R 4.0.3 Bunny-Wunnies Freak Out** *- hilarious!*
+
+![Peanuts 1972](https://static.wikia.nocookie.net/peanuts/images/b/b5/19721023.gif/revision/latest/scale-to-width-down/600?cb=20140309215613)
