@@ -1,4 +1,4 @@
-# Insert chapter 2 title here
+# 2.Regression and model validation
 
 *Describe the work you have done this week and summarize your learning.*
 
@@ -6,8 +6,46 @@
 - Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods.
 - Assume the reader has no previous knowledge of your data or the more advanced methods you are using.
 
-```{r}
+```{r, echo=FALSE}
 date()
 ```
 
-Here we go again...
+I've read and wrangled data from http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt into an analysis dataset which I named as "learning2014". The data was collected for the study of "The relationship between learning approaches and students' achievements in an introductory statistics course in Finland" as outlined by Kimmo Vehkalahti in his presentation in ISI2015, the 60th World Statistics Congress. Presentation slides with more background info about the study and results are available [here](https://www.slideshare.net/kimmovehkalahti/the-relationship-between-learning-approaches-and-students-achievements-in-an-introductory-statistics-course-in-finland). 
+```{r, echo=FALSE}
+learn <- read.csv("C:/Users/Susanna/Documents/IODS/IODS-project/data/learning2014.csv")
+```
+
+The analysis dataset "learning2014" contains `r nrow(learn)` observations (rows) of `r ncol(learn)` variables (columns). See sample (first six observations) of the data below.
+```{r, echo=FALSE}
+head(learn)
+```
+
+Here's a graphical overview of the data with summaries of the variables in the data. 
+```{r, message=FALSE, echo=FALSE}
+# access the GGally and ggplot2 libraries
+library(ggplot2)
+library(GGally)
+
+# create a more advanced plot matrix with ggpairs()
+p <- ggpairs(learn, lower = list(combo = wrap("facethist", bins = 20)))
+
+# draw the plot
+p
+```
+
+Here's summary of the fitted regression model with `points` as the dependent variable. I've chosen three variables having the highest absolute correlation with `points` as explanatory variables: `attitude`, `stra` and `surf`.
+
+```{r, echo=FALSE}
+# create a regression model with multiple explanatory variables
+my_model2 <- lm(points ~ attitude + stra + surf, data = learn)
+
+# print out a summary of the model
+summary(my_model2)
+```
+
+There's a statistically significant relationship between`points`and `attitude` but not between `poins` and the other explanatory variables `stra` and `surf`. 
+
+```{r}
+
+```
+
