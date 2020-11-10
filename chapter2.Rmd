@@ -1,4 +1,4 @@
-# 2.Regression and model validation
+# 2. Regression and model validation
 
 *Describe the work you have done this week and summarize your learning.*
 
@@ -15,12 +15,14 @@ I've read and wrangled data from http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPK
 learn <- read.csv("C:/Users/Susanna/Documents/IODS/IODS-project/data/learning2014.csv")
 ```
 
-The analysis dataset "learning2014" contains `r nrow(learn)` observations (rows) of `r ncol(learn)` variables (columns). See sample (first six observations) of the data below.
+The analysis dataset "learning2014" contains `r nrow(learn)` observations (rows) of `r ncol(learn)` variables (columns). 
+
+A sample (first six observations) of the data:
 ```{r, echo=FALSE}
 head(learn)
 ```
 
-Here's a graphical overview of the data with summaries of the variables in the data. 
+And a graphical overview of the data with summaries of the variables in the data:
 ```{r, message=FALSE, echo=FALSE}
 # access the GGally and ggplot2 libraries
 library(ggplot2)
@@ -33,7 +35,7 @@ p <- ggpairs(learn, lower = list(combo = wrap("facethist", bins = 20)))
 p
 ```
 
-Here's summary of the fitted regression model with `points` as the dependent variable. I've chosen three variables having the highest absolute correlation with `points` as explanatory variables: `attitude`, `stra` and `surf`.
+Next, I've created a regression model with `points` as the dependent variable and three variables having the highest absolute correlation with `points` as explanatory variables: `attitude`, `stra` and `surf`.
 
 ```{r, echo=FALSE}
 # create a regression model with multiple explanatory variables
@@ -43,9 +45,36 @@ my_model2 <- lm(points ~ attitude + stra + surf, data = learn)
 summary(my_model2)
 ```
 
-There's a statistically significant relationship between`points`and `attitude` but not between `poins` and the other explanatory variables `stra` and `surf`. 
+There's a statistically significant relationship between`points`and the explanatory variable `attitude` but not between `points` and the other explanatory variables `stra` and `surf`. 
 
-```{r}
+The model can be simplified and fitted with `attitude` as the only explanatory variable as follows:
 
+```{r, echo=FALSE}
+# fit a linear model
+my_model <- lm(points ~ attitude, data = learn)
+
+# print out a summary of the model
+summary(my_model)
 ```
 
+In addition to a linear relationship between the dependent and independent variables, linear regression model assumes that the residuals are independent, have constant variance, and are normally distributed. Residuals are leftover of the dependent variable after fitting a model (independent variables) to data and they could reveal unexplained patterns in the data by the fitted model. Patterns in residuals can be explored with diagnostic plots.
+
+```{r}
+# create a regression model
+mymod <- lm(points ~ attitude, data = learn)
+
+# draw diagnostic plots using the plot() function
+par(mfrow = c(2,2))
+plot(mymod)
+
+# Note: intentional deviation from exercise instructions
+# To produce plots 1, 2 and 5 only, use argument which = c(1,2,5)
+```
+
+**Residuals vs Fitted** plot shows if residuals have non-linear patterns. Here, cases are distributed quite equally around the horizontal line and no obvious pattern can be detected.
+
+**Normal Q-Q** plot helps to assess whether residuals are normally distributed. Here, the points appear to skew away from the straight line especially at the lower tail meaning that residuals are not normally distributed. Cases #145, #35 and #56 should be explored further as they have standardized residuals below -3.
+
+**Scale-Location** plot can be used to check the assumption of constant variance. Here, the residuals appear randomly spread along a horizontal line confirming the assumption.
+
+**Residuals vs Leverage** plot helps to identify influential cases in the data. Here, Cook's distance lines (red dashed lines) are not even visible, meaning that all cases are well within Cook's distance and not influential to the regression results.
