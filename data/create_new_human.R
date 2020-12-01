@@ -49,8 +49,8 @@ str(human)
 sum(is.na(human))
 # There are 55 missing cases.
 
-# replace commas with dots in `GNIpc`, then mutate as numeric 
-human$GNIpc <- as.numeric(gsub(",", ".", human$GNIpc))
+# remove commas in `GNIpc`, then mutate as numeric 
+human$GNIpc <- as.numeric(gsub(",", "", human$GNIpc))
 str(human$GNIpc)
 
 # check 'Country' names and add column with proper country names only
