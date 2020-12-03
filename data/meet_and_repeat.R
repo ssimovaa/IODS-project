@@ -73,14 +73,20 @@ str(RATSL)
 summary(BPRSL)
 summary(RATSL)
 
-# save both datasets in IODS data folder
+# save both datasets in long and wide form in IODS data folder
 getwd()
+write.csv(BPRS, file = 'data/BPRS.csv', row.names = FALSE)
+write.csv(RATS, file = 'data/RATS.csv', row.names = FALSE)
 write.csv(BPRSL, file = 'data/BPRSL.csv', row.names = FALSE)
 write.csv(RATSL, file = 'data/RATSL.csv', row.names = FALSE)
 
 # read saved dataframes to memory and check that everything is in order 
-check_b <- read.csv(file = 'data/BPRSL.csv')
-check_r <- read.csv(file = 'data/RATSL.csv')
+check_a <- read.csv(file = 'data/BPRS.csv')
+check_b <- read.csv(file = 'data/RATS.csv')
+check_c <- read.csv(file = 'data/BPRSL.csv')
+check_d <- read.csv(file = 'data/RATSL.csv')
+head(check_a)
 head(check_b)
-head(check_r)
-# both check out fine
+head(check_c)
+head(check_d)
+# all check out fine
