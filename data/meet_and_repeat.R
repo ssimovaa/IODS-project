@@ -75,12 +75,12 @@ summary(RATSL)
 
 # save both datasets in IODS data folder
 getwd()
-write.csv(BPRSL, file = 'data/BPRSL.csv')
-write.csv(RATSL, file = 'data/RATSL.csv')
+write.csv(BPRSL, file = 'data/BPRSL.csv', row.names = FALSE)
+write.csv(RATSL, file = 'data/RATSL.csv', row.names = FALSE)
 
 # read saved dataframes to memory and check that everything is in order 
-check_b <- read.csv(file = 'data/BPRSL.csv', row.names = 1)
-check_r <- read.csv(file = 'data/RATSL.csv', row.names = 1)
+check_b <- read.csv(file = 'data/BPRSL.csv')
+check_r <- read.csv(file = 'data/RATSL.csv')
 head(check_b)
 head(check_r)
 # both check out fine
